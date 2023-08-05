@@ -8,14 +8,12 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Telegram.Bot.Types;
+using ApiTelegramBot_NailsServeces.Models.InitialData;
 
 namespace FM_TelegramBotWebApi.Models
 {
     public class TBotContext : DbContext
     {
-
-        //public TBotContext() => Database.EnsureCreated();
-
         public TBotContext()
         {
             Database.EnsureDeleted();
@@ -32,17 +30,12 @@ namespace FM_TelegramBotWebApi.Models
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TelegramBotFM;Trusted_Connection=True;");
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite("Data Source=helloapp.db");
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            SeedData.SeedService(modelBuilder);
+            SeedData.SeedUserTelegram(modelBuilder);
+            SeedData.SeedOrders(modelBuilder);
+        }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    //string StringConect = @"Data Source=.\SQLEXPRESS;Integrated Security=True;";
-
-        //    optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TbotFM;Trusted_Connection=True;");
-        //    // optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=FavoriteMaster;Trusted_Connection=True;");
-        //}
     }
 }

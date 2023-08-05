@@ -1,0 +1,53 @@
+﻿{
+   "NAILSERVICES": [
+     {
+       "id": 1,
+       "name": "Зняття",
+       "description": "Зняття",
+       "price": 50,
+       "duration": 0.5
+     },
+     {
+       "id": 2,
+       "name": "Манікюр",
+       "description": "Манікюр",
+       "price": 100,
+       "duration": 1
+     },
+     {
+       "id": 3,
+       "name": "Гель лак",
+       "description": "Гель лак",
+       "price": 200,
+       "duration": 2
+     },
+     {
+       "id": 4,
+       "name": "Корекція",
+       "description": "Корекція",
+       "price": 300,
+       "duration": 3
+     },
+     {
+       "id": 5,
+       "name": "Нарощування",
+       "description": "Нарощування",
+       "price": 350,
+       "duration": 3.5
+     },
+     {
+       "id": 6,
+       "name": "Викладний френч",
+       "description": "Викладний френч",
+       "price": 400,
+       "duration": 4
+     },
+     {
+       "id": 7,
+       "name": "Інше",
+       "description": "Інше",
+       "price": 400,
+       "duration": 4
+     }
+   ]
+}

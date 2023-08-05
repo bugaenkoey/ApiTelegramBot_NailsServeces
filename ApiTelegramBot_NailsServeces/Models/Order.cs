@@ -9,7 +9,7 @@ namespace FM_TelegramBotWebApi.Models
         public int Id { get; set; }
         public Service Service { get; set; }
         public int? ServiceId { get; set; }
-        public int? MyUserId { get; set; }
+        public int? UserTelegramId { get; set; }
         public UserTelegram User { get; set; }
         public bool Done { get; set; } = false;
         public DateTime? DateTime { get; set; }
