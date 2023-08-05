@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FM_TelegramBotWebApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,34 +15,58 @@ namespace ApiTelegramBot_NailsServeces.Controllers
     {
         // GET: api/<OrderController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Order> Get()
         {
-            return new string[] { "value1", "value2" };
+            TBotContext db = new TBotContext();
+            return db.Orders.ToList();
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Order Get(int id)
         {
-            return "value";
+            TBotContext db = new TBotContext();
+            return db.Orders.Find(id);
         }
 
         // POST api/<OrderController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Order order)
         {
+            using TBotContext db = new TBotContext();
+            db.Orders.Add(order);
+            db.SaveChanges();
         }
 
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Order newOrder)
         {
+            using TBotContext db = new TBotContext();
+            Order order = db.Orders.Find(id);
+
+            if (order != null)
+            {
+                order = newOrder;
+                //обновляем объект
+                db.Orders.Update(order);
+                db.SaveChanges();
+            }
         }
 
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            using TBotContext db = new TBotContext();
+            Order order = db.Orders.Find(id);
+            // получаем первый объект
+            if (order != null)
+            {
+                //удаляем объект
+                db.Orders.Remove(order);
+                db.SaveChanges();
+            }
         }
     }
 }
